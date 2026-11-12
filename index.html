@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Recorder</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">●</span> Class Recorder</div>
+  <div id="pill" class="pill off">ESP32 offline</div>
+  <a href="/logout" class="muted small">Log out</a>
+</header>
+<main>
+  <div id="freeNote" class="banner hidden">Free hosting deletes files when the site sleeps (15 min with no ESP32 connected
+    and no one on this page). <b>Download your files soon after each class.</b></div>
+
+  <div class="grid2">
+    <section class="card">
+      <h2>Live camera</h2>
+      <div class="preview"><img id="prev" alt=""><div id="prevEmpty">Waiting for the ESP32…</div>
+        <div id="recBadge" class="recbadge hidden">● REC <span id="recTime">0:00</span></div></div>
+      <div id="devInfo" class="muted small"></div>
+    </section>
+
+    <section class="card">
+      <div id="idle">
+        <h2>Start a recording</h2>
+        <label>Class name<input id="title" placeholder="e.g. Physics — projectile motion"></label>
+        <button id="start" class="primary big">● Start recording</button>
+        <p class="muted small">XIAO board: you can also press its <b>BOOT</b> button to start/stop.</p>
+      </div>
+      <div id="active" class="hidden">
+        <h2 id="activeTitle">Recording…</h2>
+        <div class="stats"><div><b id="sTime">0:00</b><span>time</span></div><div><b id="sFrames">0</b><span>photos</span></div>
+          <div><b id="sAudio">0:00</b><span>audio</span></div></div>
+        <button id="stop" class="danger big">■ Stop &amp; make video</button>
+      </div>
+      <details class="settings"><summary>Camera settings</summary>
+        <div class="row3">
+          <label>Photos / sec<input id="fps" type="number" min="0.2" max="10" step="0.2"></label>
+          <label>Resolution<select id="framesize"><option>QVGA</option><option>CIF</option><option>VGA</option><option>SVGA</option><option>XGA</option><option>HD</option></select></label>
+          <label>JPEG quality<input id="quality" type="number" min="6" max="40"></label>
+        </div>
+        <button id="saveSet">Apply</button> <span class="muted small">Lower quality number = sharper. Higher settings need stronger Wi-Fi.</span>
+      </details>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>Your recordings</h2>
+    <div id="list"><p class="muted">Nothing yet.</p></div>
+  </section>
+
+  <section class="card howto">
+    <h2>Getting notes from an AI</h2>
+    <ul>
+      <li><b>Gemini</b> (gemini.google.com) watches videos: upload the <b>MP4</b>, then paste the prompt (📋 button).</li>
+      <li><b>Claude</b> and most other AIs can't watch video: upload the <b>AI pack</b> files instead (slides PDF + transcript), then paste the prompt.</li>
+    </ul>
+  </section>
+</main>
+<div id="modal" class="modal hidden"><div class="modalbox" id="modalBox"></div></div>
+<div id="toast" class="toast hidden"></div>
+<script src="/static/app.js"></script>
+</body></html>

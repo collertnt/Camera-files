@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Recorder — log in</title><link rel="stylesheet" href="/static/style.css"></head>
+<body class="loginpage">
+<form class="card login" method="post" action="/login">
+  <div class="brand big"><span class="logo">●</span> Class Recorder</div>
+  <p class="muted">ESP32 camera + mic → video for any AI</p>
+  <!--WARN-->
+  <label>Password<input type="password" name="password" autofocus required></label>
+  <button class="primary big" type="submit">Log in</button>
+  <p class="err" id="bad" hidden>Wrong password.</p>
+</form>
+<script>if (location.search.includes("bad=1")) document.getElementById("bad").hidden = false;</script>
+</body></html>

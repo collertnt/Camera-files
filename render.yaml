@@ -1,0 +1,18 @@
+# One-click setup on Render.com: New → Blueprint → pick this repository.
+services:
+  - type: web
+    name: class-recorder
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: SITE_PASSWORD      # you type this in when Render asks
+        sync: false
+      - key: DEVICE_TOKEN       # Render makes a random one; copy it into the ESP32's config.h
+        generateValue: true
+      - key: GEMINI_API_KEY     # optional: enables automatic transcripts
+        sync: false
